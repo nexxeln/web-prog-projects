@@ -152,6 +152,7 @@ const PLANETS: PlanetData[] = [
 // Camera control component
 function CameraController({
   selectedPlanet,
+  //@ts-ignore
   setSelectedPlanet,
 }: {
   selectedPlanet: PlanetData | null;
