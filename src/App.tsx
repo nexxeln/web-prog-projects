@@ -105,40 +105,45 @@ function ProjectCard({ project }: { project: ProjectCard }) {
   );
 }
 
+function Home() {
+  return (
+    <div className="min-h-screen bg-gray-900 text-white">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
+            Interactive Web Projects
+          </h1>
+          <p className="mx-auto mb-16 max-w-2xl text-lg text-gray-400">
+            A collection of interactive web applications showcasing modern web
+            technologies, creative design, and engaging user experiences.
+          </p>
+        </div>
+
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <ProjectCard key={project.path} project={project} />
+          ))}
+        </div>
+
+        <footer className="mt-16 text-center text-gray-400">
+          <p>Built with React, TypeScript, and Tailwind CSS</p>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/speed-typing" element={<SpeedTyping />} />
         <Route path="/memory-game" element={<MemoryGame />} />
         <Route path="/solar-system" element={<SolarSystem />} />
         <Route path="/music-visualizer" element={<MusicVisualizer />} />
         <Route path="/virtual-keyboard" element={<VirtualKeyboard />} />
       </Routes>
-
-      <div className="min-h-screen bg-gray-900 text-white">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
-              Interactive Web Projects
-            </h1>
-            <p className="mx-auto mb-16 max-w-2xl text-lg text-gray-400">
-              A collection of interactive web applications showcasing modern web
-              technologies, creative design, and engaging user experiences.
-            </p>
-          </div>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.path} project={project} />
-            ))}
-          </div>
-
-          <footer className="mt-16 text-center text-gray-400">
-            <p>Built with React, TypeScript, and Tailwind CSS</p>
-          </footer>
-        </div>
-      </div>
     </Router>
   );
 }
