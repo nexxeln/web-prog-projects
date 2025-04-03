@@ -29,7 +29,7 @@ const emojis = [
   "🦉",
 ];
 
-const TOTAL_PAIRS = 8; // Constant for total number of pairs
+const TOTAL_PAIRS = 8;
 
 const MemoryGame = () => {
   const [cards, setCards] = useState<Card[]>([]);
@@ -59,14 +59,11 @@ const MemoryGame = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Initialize game
   const initializeGame = () => {
-    // Get 8 random emojis for pairs
     const shuffledEmojis = [...emojis]
       .sort(() => Math.random() - 0.5)
       .slice(0, 8);
 
-    // Create pairs
     const pairs = [...shuffledEmojis, ...shuffledEmojis];
     const shuffled = pairs
       .map((emoji) => ({ emoji, sortKey: Math.random() }))
@@ -90,7 +87,6 @@ const MemoryGame = () => {
     setShowModal(false);
   };
 
-  // Initialize game on component mount
   useEffect(() => {
     initializeGame();
   }, []);

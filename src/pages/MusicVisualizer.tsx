@@ -17,7 +17,6 @@ export default function MusicVisualizer() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Set canvas size
     const setCanvasSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -37,16 +36,13 @@ export default function MusicVisualizer() {
   const initializeAudio = async (file: File) => {
     if (!audioRef.current) return;
 
-    // Create audio context if it doesn't exist
     if (!audioContextRef.current) {
       audioContextRef.current = new AudioContext();
     }
 
-    // Create audio source from file
     const audioUrl = URL.createObjectURL(file);
     audioRef.current.src = audioUrl;
 
-    // Set up audio analyzer
     const source = audioContextRef.current.createMediaElementSource(
       audioRef.current
     );
@@ -56,7 +52,6 @@ export default function MusicVisualizer() {
     analyser.connect(audioContextRef.current.destination);
     analyserRef.current = analyser;
 
-    // Start visualization
     visualize();
   };
 
@@ -87,7 +82,6 @@ export default function MusicVisualizer() {
       for (let i = 0; i < bufferLength; i++) {
         const barHeight = (dataArray[i] / 255) * (canvas.height / 2);
 
-        // Create gradient for each bar
         const gradient = ctx.createLinearGradient(
           0,
           canvas.height - barHeight,

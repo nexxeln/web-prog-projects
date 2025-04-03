@@ -24,18 +24,15 @@ const SpeedTyping = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [stats, setStats] = useState<GameStats | null>(null);
 
-  // Get random quote
   const getRandomQuote = () => {
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     setCurrentQuote(randomQuote);
   };
 
-  // Initialize game with random quote
   useEffect(() => {
     getRandomQuote();
   }, []);
 
-  // Calculate game statistics
   const calculateStats = useCallback(() => {
     if (!startTime) return null;
 
@@ -58,7 +55,6 @@ const SpeedTyping = () => {
     };
   }, [startTime, currentQuote.text, userInput]);
 
-  // Handle user input
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (!startTime) {
@@ -73,7 +69,6 @@ const SpeedTyping = () => {
     }
   };
 
-  // Reset game
   const resetGame = () => {
     getRandomQuote();
     setUserInput("");
